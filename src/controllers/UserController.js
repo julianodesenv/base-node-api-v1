@@ -17,7 +17,7 @@ class UserController {
   // index
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email'] });
       return res.json(users);
     } catch (e) {
       return res.status(400).json({
@@ -54,14 +54,16 @@ class UserController {
   // update
   async update(req, res) {
     try {
+      /*
       const { id } = req.params;
       if (!id) {
         return res.status(400).json({
           errors: ['ID not found'],
         });
       }
+      */
 
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(400).json({
           errors: ['User not found'],
@@ -81,21 +83,23 @@ class UserController {
   // delete
   async delete(req, res) {
     try {
+      /*
       const { id } = req.params;
       if (!id) {
         return res.status(400).json({
           errors: ['ID not found'],
         });
       }
+      */
 
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(400).json({
           errors: ['User not found'],
         });
       }
 
-      await user.destroy(id);
+      await user.destroy(req.userId);
 
       return res.json(user);
     } catch (e) {
