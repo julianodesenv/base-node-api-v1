@@ -5,7 +5,7 @@ class AlunoController {
   async index(req, res) {
     try {
       const alunos = await Aluno.findAll({
-        attributes: ['id', 'nome', 'sobrenome', 'peso', 'altura'],
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
         order: [['id', 'desc'], [Photo, 'id', 'desc']],
         include: {
           model: Photo,
@@ -31,7 +31,7 @@ class AlunoController {
       }
 
       const aluno = await Aluno.findByPk(id, {
-        attributes: ['id', 'nome', 'sobrenome', 'peso', 'altura'],
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
         order: [['id', 'desc'], [Photo, 'id', 'desc']],
         include: {
           model: Photo,

@@ -56,7 +56,7 @@ export default class Aluno extends Model {
         defaultValue: '',
         validate: {
           isFloat: {
-            msg: 'Peso precisa ser um número inteiro ou ponto flutuante.',
+            msg: 'Altura precisa ser um número inteiro ou ponto flutuante.',
           },
         },
       },
